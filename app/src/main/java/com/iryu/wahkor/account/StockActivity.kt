@@ -33,11 +33,14 @@ class StockActivity : AppCompatActivity() {
         menubt02.text="บัตร"
         menubt04.text="+/-"
         menubt03.text="ขนม/เครื่องดื่ม"
-        arrangeData()
+        addstock()
+
     }
     fun arrangeData(){
+        stockadape.clear()
         return_stockdata =""
         val name = data_stock_name.split(",")
+            stockcount=name.size-1
         val firstdata = data_stock_first.split (",")
         val lastdata = data_stock_last.split(",")
                 datestart.setText(startdateaccount)
@@ -54,18 +57,20 @@ class StockActivity : AppCompatActivity() {
                     lastdata[i]))
             return_stockdata +=lastdata[i]
         }
-        stockcount=name.size
+
         for (i in 1 until airname.size){
             stockadape.add(stockModel(
                     airname[i],
                     "0",
                     (airlast[i].toInt()-airfirst[i].toInt()).toString()))
-        }
+        }}
+    fun addstock(){
+        arrangeData()
         val myadape= stock_adapter(this, stockadape, 35f, 20f, 20f)
         stock_showlist.adapter=myadape
         stock_showlist.onItemClickListener=AdapterView.OnItemClickListener{ _, _, position,_ ->
-            myAlert(this,position)
 
+            myAlert(this,position)
             }}
 
 
@@ -78,21 +83,19 @@ class StockActivity : AppCompatActivity() {
 
                 edittextlast=EditText(context)
                 edittextlast!!.hint= stockadape[position].stocklast
-                edittextlast!!.inputType = InputType.TYPE_CLASS_TEXT
-                setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
-                    var last=edittextlast!!.text.toString()
-                    stockadape[position].stocklast=last
+                edittextlast!!.inputType = InputType.TYPE_CLASS_PHONE
+                setPositiveButton("OK") { dialog, _ ->
+                    val last=edittextlast!!.text.toString()
+                     if (checkeval(last)) {
+                          if(position<stockcount){
+                       data_stock_last= inputData(position,last, data_stock_last,stockadape[position].stockstart.toInt()-300,39999)
+                    }else{
+                          data_airpay_last= inputData(position-stockcount,last, data_airpay_last,0,50000)
+
+                      }}
+                     arrangeData()
                     stock_showlist.adapter= stock_adapter(context, stockadape, 35f, 20f, 20f)
-                    data_stock_last = data_stock_last.split(",")[0]
-                    for (i in 0 until  stockcount-1){
-                        data_stock_last+=","+stockadape[i].stocklast
-                    }
-                    println("data airpay lastbefor=${data_airpay_last}")
-                    data_airpay_last = data_airpay_last.split(",")[0]
-                    for (i in stockcount-1 until stockadape.size){
-                        data_airpay_last +=","+stockadape[i].stocklast
-                    }
-                    println("data airpay lastall=${data_airpay_last}")
+
                 }
 
                 setNegativeButton("NO") {

@@ -35,8 +35,7 @@ class fstockActivity : AppCompatActivity() {
         menubt02.text="ขนม/น้ำ"
         menubt04.text="รายรับรายจ่าย"
         datestart.setText(startdateaccount)
-        arrangeData()
-        println("test="+eval("3+5*7-1"))
+        setfstock()
 
     }
     fun eval(text:String):Int{
@@ -49,6 +48,7 @@ class fstockActivity : AppCompatActivity() {
         return 10
     }
     fun arrangeData(){
+        fstockadape.clear()
         val name = data_fstock_name.split(",")
         val firstdata = data_fstock_first.split (",")
         val lastdata = data_fstock_last.split(",")
@@ -62,9 +62,10 @@ class fstockActivity : AppCompatActivity() {
                     name[i],
                     (firstdata[i].toInt() + myadd).toString(),
                     lastdata[i]))
-        }
-
-        var myadape= stock_adapter(this, fstockadape, 35f, 20f, 20f)
+        }}
+    fun setfstock(){
+        arrangeData()
+        val myadape= stock_adapter(this, fstockadape, 35f, 20f, 20f)
         stock_showlist.adapter=myadape
         stock_showlist.onItemClickListener=AdapterView.OnItemClickListener{ _, _, position, _ ->
             myAlert(this,position)
@@ -81,15 +82,15 @@ class fstockActivity : AppCompatActivity() {
 
             edittextlast=EditText(context)
             edittextlast!!.hint= fstockadape[position].stocklast
-            edittextlast!!.inputType = InputType.TYPE_CLASS_NUMBER
+            edittextlast!!.inputType = InputType.TYPE_CLASS_PHONE
             setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
                 val last=edittextlast!!.text.toString()
-                fstockadape[position].stocklast=last
-               stock_showlist.adapter= stock_adapter(context, fstockadape, 35f, 20f, 20f)
-                data_fstock_last= data_fstock_last.split(",")[0]
-                for (i in 0 until  fstockadape.size){ // do not include last item
-                      data_fstock_last+=","+fstockadape[i].stocklast
+                if (checkeval(last)){
+                    data_fstock_last= inputData(position,last, data_fstock_last,0,fstockadape[position].stockstart.toInt())
+
                 }
+                arrangeData()
+               stock_showlist.adapter= stock_adapter(context, fstockadape, 35f, 20f, 20f)
             }
 
             setNegativeButton("NO") {
