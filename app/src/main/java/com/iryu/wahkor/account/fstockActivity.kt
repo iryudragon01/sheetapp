@@ -25,7 +25,7 @@ class fstockActivity : AppCompatActivity() {
        // menubt02.setOnClickListener { startActivity(Intent(this,fstockActivity::class.java)) }
         menubt03.setOnClickListener { startActivity(Intent(this, RefillDetailActivity::class.java)) }
         menubt04.setOnClickListener { startActivity(Intent(this,StatementActivity::class.java)) }
-        //menubt04.setOnClickListener { UpdateManager().update() }
+
         menubt01.setBackgroundColor(unselectBTcolor)
         menubt02.setBackgroundColor(selectBTcolor)
         menubt03.setBackgroundColor(unselectBTcolor)
@@ -36,6 +36,17 @@ class fstockActivity : AppCompatActivity() {
         menubt04.text="รายรับรายจ่าย"
         datestart.setText(startdateaccount)
         arrangeData()
+        println("test="+eval("3+5*7-1"))
+
+    }
+    fun eval(text:String):Int{
+        var num=""
+        var op=""
+        for(i in text) {
+            if (i in '0' until '9'){num+=i}else{num+="<>";op+=i}
+        }
+        println(num+"\n"+op)
+        return 10
     }
     fun arrangeData(){
         val name = data_fstock_name.split(",")

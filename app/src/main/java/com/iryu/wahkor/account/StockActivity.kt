@@ -78,7 +78,7 @@ class StockActivity : AppCompatActivity() {
 
                 edittextlast=EditText(context)
                 edittextlast!!.hint= stockadape[position].stocklast
-                edittextlast!!.inputType = InputType.TYPE_CLASS_NUMBER
+                edittextlast!!.inputType = InputType.TYPE_CLASS_TEXT
                 setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
                     var last=edittextlast!!.text.toString()
                     stockadape[position].stocklast=last

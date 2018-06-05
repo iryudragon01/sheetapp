@@ -1,12 +1,13 @@
 package com.iryu.wahkor.account
 
-class Calculator(){
+
+class Calculator{
 
     fun getStock():Int{
         var money=0
         for (i in 1 until data_stock_first.split(",").size){
             money+=(-data_stock_first.split(",")[i].toInt()+
-                    data_stock_last.split(",")[i].toInt())*
+                    evalstring.eval(data_stock_last.split(",")[i]).toInt())*
                     data_stock_price.split(",")[i].toInt()}
         return money
     }
@@ -14,7 +15,7 @@ class Calculator(){
         var stockmoney=0
         for (i in 1 until data_airpay_first.split(",").size){
             stockmoney+=(-data_airpay_first.split(",")[i].toInt()+
-                    data_airpay_last.split(",")[i].toInt())*
+                    evalstring.eval(data_airpay_last.split(",")[i]).toInt())*
                     data_airpay_price.split(",")[i].toInt()}
         return stockmoney
     }
@@ -25,7 +26,7 @@ class Calculator(){
         for (i in 1 until data_fstock_first.split(",").size){
             money+=(( if (refillsum=="") 0 else refillsum.split(",")[i-1].toInt())-
                     data_fstock_first.split(",")[i].toInt()+
-                    data_fstock_last.split(",")[i].toInt())*
+                    evalstring.eval(data_fstock_last.split(",")[i]).toInt())*
                     data_fstock_price.split(",")[i].toInt()}
         return money
 
@@ -48,5 +49,4 @@ fun getExpense():Int{
         }
     }
     return money
-}
-}
+}}

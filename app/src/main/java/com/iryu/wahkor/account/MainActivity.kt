@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+
 var acClick=false
 var summariesdata=""
 var mainfirsttime=true
@@ -30,6 +31,23 @@ class MainActivity : AppCompatActivity() {
         list.text="บัญชี"
         over_view.text="หน้าแรก"
         save.text="บันทึก"
+      eval()
+    }
+    fun eval(){
+        val mytext="5+3*6-2"
+        var num="";var op=""
+        for(c in mytext){
+            if (c in '0' until '9') num+=c else {op+=c;num+="," }
+        }
+        var number=mytext.split(",")
+        var summulti=""
+        var lastnum="m"
+        for (i in 0 until number.size-2){
+            if (op[i]=='*'){
+                if (summulti==""){summulti=number[i]+","+number[i+1]}
+
+            }
+        }
 
     }
     fun cleardata() {
