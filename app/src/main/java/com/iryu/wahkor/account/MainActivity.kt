@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             update();save.isClickable=false}
         list.setOnClickListener { if (acClick){startActivity(Intent(this, StockActivity::class.java)) }}
         list.text="บัญชี"
-        over_view.text="หน้าหลัก"
+        over_view.text="หน้าแรก"
         save.text="บันทึก"
 
     }
