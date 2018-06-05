@@ -32,40 +32,39 @@ class RefillDetailActivity : AppCompatActivity() {
         menubt02.text="น้ำ/ขนม"
         menubt04.text="เพิ่มสินค้าใหม่"
         addElementRefilldetail()
-    }
-    fun addElementRefilladd(){
-        enableAlert="yes"
-        Refilladd.clear()
-        val element= data_fstock_name.split(",")
 
-        for (i in 1 until element.size){
-            Refilladd.add(refillsumModel(element[i],"0"))
-        }
-        val adapter=refillAdaper(this, Refilladd)
-        stock_showlist.adapter=adapter
-        stock_showlist.onItemClickListener=AdapterView.OnItemClickListener{ _,_, position,_ ->
-            myAlert(this,position, Refilladd)
 
-        }
+
     }
     fun addElementRefilldetail(){
         RefillDetail.clear()
         enableAlert="no"
         val element= refilldetail.split("<&&>")
         for (i in 0 until element.size){
-            println("refill detail${i} =${element[i]}")
             val raw=element[i].split(",")
             var cell=""
             for (j in 1 until raw.size){
                 if(raw[j]!="0"){
-                cell+=data_fstock_name.split(",")[j]+"="+raw[j]+"\n"}}
-                RefillDetail.add(refillsumModel(raw[0],cell))}
+                    cell+=data_fstock_name.split(",")[j]+"="+raw[j]+"\n"}}
+            RefillDetail.add(refillsumModel(raw[0],cell))}
 
 
-            val adapter=refillAdaper(this,RefillDetail)
+        val adapter=refillAdaper(this,RefillDetail)
+        stock_showlist.adapter=adapter
+
+    }
+    fun addElementRefilladd(){
+        Refilladd.clear()
+        enableAlert="yes"
+        val element= data_fstock_name.split(",")
+        val value= newfood.split(",")
+        for (i in 1 until element.size){
+            Refilladd.add(refillsumModel(element[i], value[i] )) }
+            val adapter=refillAdaper(this,Refilladd)
             stock_showlist.adapter=adapter
-
-        }
+         stock_showlist.onItemClickListener=AdapterView.OnItemClickListener{ _,_, position,_ ->
+            myAlert(this,position, Refilladd)
+        }}
 
     fun myAlert(context: Context, position:Int,myRefill:ArrayList<refillsumModel>) {
         if (enableAlert=="no"){ return}
@@ -80,13 +79,10 @@ class RefillDetailActivity : AppCompatActivity() {
             edittextlast!!.inputType = InputType.TYPE_CLASS_NUMBER
             setPositiveButton("OK") { dialog, _ -> dialog.dismiss()
                 val last=edittextlast!!.text.toString()
-                myRefill[position].refillsumvalume=last
-                stock_showlist.adapter= refillAdaper(context,myRefill)
-                newfood=""
-                for (i in 0 until  myRefill.size){
-                    if (i!=0){ newfood+=","}
-                    newfood+=myRefill[i].refillsumvalume
-                }
+                if (checkeval(last)){
+                    newfood= inputData(position,last,newfood,0,1000)
+                                    }
+                addElementRefilladd()
             }
 
             setNegativeButton("NO") {
