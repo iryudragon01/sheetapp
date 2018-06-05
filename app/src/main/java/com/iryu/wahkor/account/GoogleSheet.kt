@@ -117,7 +117,7 @@ open class GoogleSheet:AsyncTask<String,String,String>() {
         val sub = data.split("<sum>")
         if (sub.size == 2) {
             refilldetail = sub[0]
-            refillsum = sub[1]
+            setFstockFirstdata("hello,"+sub[1])
         } else {
             println(data)
         }

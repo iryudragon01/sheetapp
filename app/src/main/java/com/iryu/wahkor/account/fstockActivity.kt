@@ -54,14 +54,7 @@ class fstockActivity : AppCompatActivity() {
         val lastdata = data_fstock_last.split(",")
 
         for (i in 1 until name.size){
-            var myadd:Int
-            if(refillsum==""){myadd=0}else{
-                myadd=refillsum.split(",")[i-1].toInt()}
-
-            fstockadape.add(stockModel(
-                    name[i],
-                    (firstdata[i].toInt() + myadd).toString(),
-                    lastdata[i]))
+            fstockadape.add(stockModel(name[i], firstdata[i],lastdata[i]))
         }}
     fun setfstock(){
         arrangeData()

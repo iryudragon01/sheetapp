@@ -68,6 +68,7 @@ class RefillDetailActivity : AppCompatActivity() {
 
     fun myAlert(context: Context, position:Int,myRefill:ArrayList<refillsumModel>) {
         if (enableAlert=="no"){ return}
+        val olddata=newfood
         val alert= AlertDialog.Builder(this)
         var edittextlast: EditText?=null
         with(alert){
@@ -82,6 +83,7 @@ class RefillDetailActivity : AppCompatActivity() {
                 if (checkeval(last)){
                     newfood= inputData(position,last,newfood,0,1000)
                                     }
+                diffOldandNew(olddata, newfood)
                 addElementRefilladd()
             }
 
