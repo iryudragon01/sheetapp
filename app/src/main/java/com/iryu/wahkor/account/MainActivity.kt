@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 var acClick=false
 var summariesdata=""
 var mainfirsttime=true
+val empty=""
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,23 +32,6 @@ class MainActivity : AppCompatActivity() {
         list.text="บัญชี"
         over_view.text="หน้าแรก"
         save.text="บันทึก"
-      eval()
-    }
-    fun eval(){
-        val mytext="5+3*6-2"
-        var num="";var op=""
-        for(c in mytext){
-            if (c in '0' until '9') num+=c else {op+=c;num+="," }
-        }
-        var number=mytext.split(",")
-        var summulti=""
-        var lastnum="m"
-        for (i in 0 until number.size-2){
-            if (op[i]=='*'){
-                if (summulti==""){summulti=number[i]+","+number[i+1]}
-
-            }
-        }
 
     }
     fun cleardata() {
@@ -66,14 +50,20 @@ class MainActivity : AppCompatActivity() {
         val data= summariesdata.split(",")
         val daymoney=data[0].toInt()
         val nightmoney=data[1].toInt()
-        date.setText(startdateaccount)
-        stock.setText((calculator.getStock()+calculator.getAirpay()).toString())
-        fstock.setText(calculator.getFstock().toString())
-        income.setText(calculator.getIncome().toString())
-        expense.setText(calculator.getExpense().toString())
+        val stocksetText="บัตร และ airpay "+(calculator.getStock()+calculator.getAirpay()).toString()+" บาท"
+        val fstocktext="น้ำและขนม "+(calculator.getFstock().toString())+ " บาท"
+        val incometext="รายรับ "+(calculator.getIncome().toString())+" บาท"
+        val expensetext= "รายจ่าย"+(calculator.getExpense().toString()) + " บาท"
+        val dayworktext="กะกลางวัน "+data[0]+" บาท"
+        val nightworktext="กะกลางคืน "+data[1]+" บาท"
 
-        daywork.setText(data[0])
-        nightwork.setText(data[1])
+        date.text=startdateaccount
+        stock.text=stocksetText
+        fstock.text=fstocktext
+        income.text=incometext
+        expense.text=expensetext
+        daywork.text=dayworktext
+        nightwork.text=nightworktext
         val money=calculator.getStock()+
                 calculator.getAirpay()+
                 calculator.getFstock()+
@@ -81,14 +71,15 @@ class MainActivity : AppCompatActivity() {
                 calculator.getExpense()-
                 daymoney-nightmoney
 
-
-        all.setText(money.toString())
+        val alltext="ยอดเงิน "+money.toString()+" บาท"
+        all.text=alltext
     }
 
 
     fun update(){
         var url="action=senddata"
-        url+="&return_refill=${newfood}&del_income=${del_income}&del_expense=${del_expense}"
+        url+="&return_refill=${if (nosavenewfood!= newfood)newfood else empty}" +
+             "&del_income=${del_income}&del_expense=${del_expense}"
         url+="&tempincome=${tempincome}&tempexpense=${tempexpense}"
         url+="&GoogleId=${GoogleID}"
         url+="&airpaystart=${data_airpay_first}"
@@ -100,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
     inner class GoogleScript():GoogleSheet(){
         override fun onPostExecute(result: String?) {
-
+println(result)
             val unwrap=(result as String).split("<||>")
             if (unwrap[0]=="getdataall"){GoogleSheet().sendResult(result)
                 GoogleScript().execute("action=summaries&GoogleId=${GoogleID}")

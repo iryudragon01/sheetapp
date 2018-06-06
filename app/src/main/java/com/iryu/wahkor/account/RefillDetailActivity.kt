@@ -43,7 +43,7 @@ class RefillDetailActivity : AppCompatActivity() {
         for (i in 0 until element.size){
             val raw=element[i].split(",")
             var cell=""
-            for (j in 1 until raw.size){
+            for (j in 1 until data_fstock_name.split(",").size){
                 if(raw[j]!="0"){
                     cell+=data_fstock_name.split(",")[j]+"="+raw[j]+"\n"}}
             RefillDetail.add(refillsumModel(raw[0],cell))}

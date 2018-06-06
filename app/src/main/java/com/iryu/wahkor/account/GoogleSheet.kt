@@ -15,6 +15,7 @@ var IncomeData:String=""
 var ExpenseData:String=""
 var getdatatime:Int=0
 var startdateaccount=""
+var nosavenewfood=""
 open class GoogleSheet:AsyncTask<String,String,String>() {
     override fun doInBackground(vararg params: String?): String {
         var url = "https://script.google.com/macros/s/AKfycbwH6fLr3mO1-KcreVb5HcNoI_wATVveJs7RmOayBpYq/dev?"
@@ -111,6 +112,7 @@ open class GoogleSheet:AsyncTask<String,String,String>() {
         for (i in 0 until data_fstock_name.split(",").size) {
             newfood += if (i != 0) ",0" else "0"
         }
+        nosavenewfood=newfood
     }
 
     fun refill(data: String) {

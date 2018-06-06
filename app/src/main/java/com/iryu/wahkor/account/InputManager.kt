@@ -26,16 +26,13 @@ fun inputData( position:Int,inputdata:String,updatedata:String,min:Int,max:Int):
     }
 }
 fun setFstockFirstdata(data:String){
-    println("add fstock first=${data}")
     if (data==""){return}
     val first= data_fstock_first.split(",")
     val subdata=data.split(",")
-    var me=first[0]
+    data_fstock_first=first[0]
     for (i in 1 until first.size){
-        me+=","+(first[i].toInt()+subdata[i].toInt()).toString()
+        data_fstock_first+=","+(first[i].toInt()+evalstring.eval(subdata[i])).toInt().toString()
     }
-    data_fstock_first=me
-    println(data_fstock_first)
 }
 fun diffOldandNew(olddata:String,newdata:String){
     var diffdata=olddata.split(",")[0]

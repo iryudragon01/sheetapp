@@ -22,13 +22,13 @@ class Calculator{
     fun getFstock():Int{
 
 
-        var money=0
+        var money=0.0
         for (i in 1 until data_fstock_first.split(",").size){
-            money+=(( if (refillsum=="") 0 else refillsum.split(",")[i-1].toInt())-
-                    data_fstock_first.split(",")[i].toInt()+
-                    evalstring.eval(data_fstock_last.split(",")[i]).toInt())*
-                    data_fstock_price.split(",")[i].toInt()}
-        return money
+            money+=evalstring.eval(
+                    "("+data_fstock_first.split(",")[i]+"-"+
+                    data_fstock_last.split(",")[i]+")*"+
+                    data_fstock_price.split(",")[i])}
+        return money.toInt()
 
     }
     fun getIncome():Int{

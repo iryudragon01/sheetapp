@@ -32,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
     }
       inner class GoogleScript:GoogleSheet(){
         override fun onPostExecute(result: String?) {
-
             val unwarp=(result as String).split("<||>")
             if (unwarp[0]=="login") {
                 val parm = unwarp[1].split(",")
