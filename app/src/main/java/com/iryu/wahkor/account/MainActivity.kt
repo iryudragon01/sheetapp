@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        logout.setOnClickListener {startActivity(Intent(this,LoginActivity::class.java))}
+        logout.setOnClickListener {
+            mainfirsttime=true;startActivity(Intent(this,LoginActivity::class.java))}
         logout.text= GoogleUser
         over_view.setBackgroundColor(selectBTcolor)
         list.setBackgroundColor(unselectBTcolor)
