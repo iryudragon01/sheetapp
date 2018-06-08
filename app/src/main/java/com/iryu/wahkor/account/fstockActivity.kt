@@ -24,7 +24,7 @@ class fstockActivity : AppCompatActivity() {
         menubt01.setOnClickListener { startActivity(Intent(this,MainActivity::class.java)) }
        // menubt02.setOnClickListener { startActivity(Intent(this,fstockActivity::class.java)) }
         menubt03.setOnClickListener { startActivity(Intent(this, RefillDetailActivity::class.java)) }
-        menubt04.setOnClickListener { startActivity(Intent(this,StatementActivity::class.java)) }
+        menubt04.setOnClickListener {  }
 
         menubt01.setBackgroundColor(unselectBTcolor)
         menubt02.setBackgroundColor(selectBTcolor)
@@ -33,7 +33,7 @@ class fstockActivity : AppCompatActivity() {
         menubt03.text="เพิ่มสินค้า"
         menubt01.text="หน้าหลัก"
         menubt02.text="ขนม/น้ำ"
-        menubt04.text="รายรับรายจ่าย"
+        menubt04.text=""
         datestart.setText(startdateaccount)
         setfstock()
 
@@ -99,7 +99,7 @@ class fstockActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, StockActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }
 

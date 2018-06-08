@@ -3,6 +3,8 @@ package com.iryu.wahkor.account
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import kotlinx.android.synthetic.main.activity_add_statement.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 var acClick=false
@@ -33,7 +35,14 @@ class MainActivity : AppCompatActivity() {
         list.text="บัญชี"
         over_view.text="หน้าแรก"
         save.text="บันทึก"
-
+        date.setOnClickListener { showdetail("date") }
+        stock.setOnClickListener { showdetail("StockActivity") }
+        fstock.setOnClickListener { showdetail("FstockActivity") }
+        income.setOnClickListener { showdetail("StatementActivity") }
+        expense.setOnClickListener { showdetail("StatementActivity") }
+        daywork.setOnClickListener { showdetail("daywork") }
+        nightwork.setOnClickListener { showdetail("nightwork") }
+        all.setOnClickListener { showdetail("all") }
     }
     fun cleardata() {
 
@@ -115,5 +124,14 @@ println(result)
           Rdata+= if (i==0)evalstring.eval(sub[i]).toInt().toString() else ","+evalstring.eval(sub[i]).toInt().toString()
         }
         return Rdata
+    }
+    fun showdetail(name:String){
+        if (!acClick)return
+        when(name){
+            "StockActivity" ->startActivity(Intent(this,StockActivity::class.java))
+            "FstockActivity" ->startActivity(Intent(this,fstockActivity::class.java))
+            "StatementActivity" ->startActivity(Intent(this,StatementActivity::class.java))
+
+        }
     }
 }

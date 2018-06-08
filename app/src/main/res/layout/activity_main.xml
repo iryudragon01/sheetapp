@@ -42,7 +42,7 @@
     <TextView
         android:id="@+id/stock"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
     <TextView
         android:id="@+id/fstock"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
     <TextView
         android:id="@+id/income"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
     <TextView
         android:id="@+id/expense"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
     <TextView
         android:id="@+id/all"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
     <TextView
         android:id="@+id/daywork"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
     <TextView
         android:id="@+id/nightwork"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

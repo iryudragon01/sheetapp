@@ -27,9 +27,9 @@ class RefillDetailActivity : AppCompatActivity() {
         menubt02.setBackgroundColor(unselectBTcolor)
         menubt03.setBackgroundColor(selectBTcolor)
         menubt04.setBackgroundColor(unselectBTcolor)
-        menubt03.text="รายการ"
         menubt01.text="หน้าหลัก"
         menubt02.text="น้ำ/ขนม"
+        menubt03.text="รายการ"
         menubt04.text="เพิ่มสินค้าใหม่"
         addElementRefilldetail()
 

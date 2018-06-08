@@ -26,11 +26,11 @@ class AddStatementActivity : AppCompatActivity() {
     private fun setuptemp() {
         if (name.text.toString()!="" && valume.text.toString()!="" && valume.text.toString()!="0"){}else{return}
         if (incomecheck.isChecked){
-            if (tempincome !=""){tempincome+="__"}
-            tempincome+=name.text.toString()+","+valume.text.toString()
+            if (tempincome !=""){tempincome+="<<__>>"}
+            tempincome+="now,"+name.text.toString()+","+valume.text.toString()
         }else{
-            if (tempexpense !=""){tempexpense+="__"}
-            tempexpense+=name.text.toString()+","+valume.text.toString()}
+            if (tempexpense !=""){tempexpense+="<<__>>"}
+            tempexpense+="now,"+name.text.toString()+","+valume.text.toString()}
             name.setText("");valume.setText("")
         callparent()
     }

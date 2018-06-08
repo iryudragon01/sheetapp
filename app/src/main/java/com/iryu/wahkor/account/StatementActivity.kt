@@ -60,15 +60,15 @@ class StatementActivity : AppCompatActivity() {
             }
         }}
         if (tempincome!="") {
-            val temp = tempincome.split("__")
+            val temp = tempincome.split("<<__>>")
             for (i in 0 until temp.size) {
-                statementadape.add(stockModel("income", temp[i].split(",")[0], temp[i].split(",")[1]))
+                statementadape.add(stockModel("income", temp[i].split(",")[1], temp[i].split(",")[2]))
             }
         }
             if (tempexpense!=""){
-                val temp= tempexpense.split("__")
+                val temp= tempexpense.split("<<__>>")
                 for (i in 0 until temp.size){
-                    statementadape.add(stockModel("expense", temp[i].split(",")[0], temp[i].split(",")[1]))}
+                    statementadape.add(stockModel("expense", temp[i].split(",")[1], temp[i].split(",")[2]))}
 
             }
         val myadape= stock_adapter(this, statementadape, 20f, 35f, 35f)

@@ -23,16 +23,16 @@ class StockActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stock)
         menubt01.setOnClickListener { startActivity(Intent(this,MainActivity::class.java)) }
-        menubt03.setOnClickListener { startActivity(Intent(this, fstockActivity::class.java)) }
-        menubt04.setOnClickListener {  startActivity(Intent(this,StatementActivity::class.java)) }
+        //menubt03.setOnClickListener { startActivity(Intent(this, fstockActivity::class.java)) }
+        menubt04.setOnClickListener { }
         menubt01.setBackgroundColor(unselectBTcolor)
         menubt02.setBackgroundColor(selectBTcolor)
         menubt03.setBackgroundColor(unselectBTcolor)
         menubt04.setBackgroundColor(unselectBTcolor)
         menubt01.text="หน้าหลัก"
         menubt02.text="บัตร"
-        menubt04.text="+/-"
-        menubt03.text="ขนม/เครื่องดื่ม"
+        menubt03.text=""
+        menubt04.text=""
         addstock()
 
     }
