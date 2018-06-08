@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     fun update(){
         var url="action=senddata"
         url+="&return_refill=${if (nosavenewfood!= newfood)preupdate(newfood) else empty}" +
-             "&del_income=${del_income}&del_expense=${del_expense}"
+             "&del_income=${if (checkdelitem(del_income))"" else del_income}&del_expense=${if (checkdelitem(del_expense))"" else del_expense}"
         url+="&tempincome=${tempincome}&tempexpense=${tempexpense}"
         url+="&GoogleId=${GoogleID}"
         url+="&airpaystart=${data_airpay_first}"
@@ -133,5 +133,13 @@ println(result)
             "StatementActivity" ->startActivity(Intent(this,StatementActivity::class.java))
 
         }
+    }
+    fun checkdelitem(item :String):Boolean{
+        val sub=item.split(",")
+        var op=sub[0]
+        for (i in 1 until sub.size){op+="+"+sub[i]}
+        println("op = $op")
+
+        return evalstring.eval(op).toInt()==0
     }
 }

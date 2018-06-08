@@ -43,6 +43,7 @@ open class GoogleSheet:AsyncTask<String,String,String>() {
     }
 
     override fun onPostExecute(result: String?) {
+        println(result)
         getdatatime++
         val unwarp = (result as String).split("<||>")
         val headrev = unwarp[0].split("_")
@@ -69,10 +70,13 @@ open class GoogleSheet:AsyncTask<String,String,String>() {
 
     private fun income(data: String) {
         IncomeData = data
+        for (i in 0 until IncomeData.split("<&&>").size){del_income+=if(del_income=="")"0" else ",0"  }
     }
 
     private fun outcome(data: String) {
         ExpenseData = data
+        for (i in 0 until ExpenseData.split("<&&>").size){del_expense+=if(del_expense=="")"0" else ",0"  }
+
     }
 
     private fun stock(headrev: String, data: String) {

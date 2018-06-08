@@ -34,14 +34,10 @@ class StatementActivity : AppCompatActivity() {
         addStatement()
     }
     private fun addStatement() {
-        del_income=""
-        del_expense=""
         if(IncomeData!=""){
             val inelement= IncomeData.split("<&&>")
         for (i in 0 until inelement.size){
-            if (i!=0){del_income+=","}
             if (inelement[i] !=""){
-                del_income+="0"
                 val sub=inelement[i].split(",")
                 statementadape.add(stockModel(sub[0], sub[1], sub[2]))
                 itemnum++
@@ -51,9 +47,6 @@ class StatementActivity : AppCompatActivity() {
             val exelement= ExpenseData.split("<&&>")
         for (i in 0 until exelement.size){
             if (exelement[i] !=""){
-                if (del_expense !=""){del_expense+=","}
-                del_expense+="0"
-                println("round${i} del_expnse=${del_expense}")
                 val sub=exelement[i].split(",")
                 statementadape.add(stockModel(sub[0], sub[1], sub[2]))
                 itemnum++
