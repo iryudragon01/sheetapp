@@ -79,14 +79,15 @@ class MainActivity : AppCompatActivity() {
 
     fun update(){
         var url="action=senddata"
-        url+="&return_refill=${if (nosavenewfood!= newfood)newfood else empty}" +
+        url+="&return_refill=${if (nosavenewfood!= newfood)preupdate(newfood) else empty}" +
              "&del_income=${del_income}&del_expense=${del_expense}"
         url+="&tempincome=${tempincome}&tempexpense=${tempexpense}"
         url+="&GoogleId=${GoogleID}"
         url+="&airpaystart=${data_airpay_first}"
-        url+="&return_stockdata="+if(data_stock_last!= noupdateStock)  data_stock_last else ""
-        url+="&return_airpay="+if(data_airpay_last!= noupdateAirpay)  data_airpay_last else ""
-        url+="&return_fstockdata="+if(data_fstock_last!= noupdateFstock)  data_fstock_last else ""
+        url+="&return_stockdata="+if(data_stock_last!= noupdateStock)  preupdate(data_stock_last) else ""
+        url+="&return_airpay="+if(data_airpay_last!= noupdateAirpay)  preupdate(data_airpay_last) else ""
+        url+="&return_fstockdata="+if(data_fstock_last!= noupdateFstock)  preupdate(data_fstock_last) else ""
+
         GoogleScript().execute(url)
         newfood="";loadfstock =true;loadstock =true;tempincome="";tempexpense="";del_expense="";del_income=""
     }
@@ -106,5 +107,13 @@ println(result)
 
     override fun onBackPressed() {
         return
+    }
+    fun preupdate(data : String):String{
+        val sub=data.split(",")
+        var Rdata=""
+        for (i in 1 until sub.size){
+          Rdata+= if (i==0)evalstring.eval(sub[i]).toInt().toString() else ","+evalstring.eval(sub[i]).toInt().toString()
+        }
+        return Rdata
     }
 }
