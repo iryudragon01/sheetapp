@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.text.InputType
 import android.widget.AdapterView
 import android.widget.EditText
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_stock.*
 
 public var del_income=""
@@ -70,9 +71,29 @@ class StatementActivity : AppCompatActivity() {
                 myAlert(this,position)
             }
     }
+    fun del_itemmanager(position: Int,oldtext:String):String{
+        val editincome=  (position < IncomeData.split(",").size)
+        val realposition=if (editincome)position else position- IncomeData.split(",").size
+        val data=if (editincome)del_income.split(",") else del_expense.split(",")
+
+            val edata=data.toTypedArray()
+             val editval = if (edata[realposition]=="0") "1" else "0"
+            val rdata=oldtext.split("_de")
+            var tempdata=""
+            for (i in 0 until  edata.size){
+                tempdata+=if (i==0)(if (realposition==i)editval else edata[i])
+                else ","+(if (i==realposition)editval else edata[i])
+            }
+            if (editincome) del_income=tempdata else del_expense=tempdata
+            return if(rdata.size==2) rdata[0] else rdata[0]+"_del"
+    }
 
     fun myAlert(context: Context, position:Int) {
-        if (itemnum>position){return}
+        if (itemnum>position){
+            statementadape[position].stockstart=del_itemmanager(position,statementadape[position].stockstart)
+            val myadape= stock_adapter(this, statementadape, 20f, 35f, 35f)
+            stock_showlist.adapter=myadape
+            return}
         val alert= AlertDialog.Builder(this)
         var edittextlast: EditText?=null
         with(alert){
