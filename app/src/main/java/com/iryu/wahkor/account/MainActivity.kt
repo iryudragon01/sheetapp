@@ -102,7 +102,6 @@ class MainActivity : AppCompatActivity() {
     }
     inner class GoogleScript():GoogleSheet(){
         override fun onPostExecute(result: String?) {
-println(result)
             val unwrap=(result as String).split("<||>")
             if (unwrap[0]=="getdataall"){GoogleSheet().sendResult(result)
                 GoogleScript().execute("action=summaries&GoogleId=${GoogleID}")
@@ -138,8 +137,6 @@ println(result)
         val sub=item.split(",")
         var op=sub[0]
         for (i in 1 until sub.size){op+="+"+sub[i]}
-        println("op = $op")
-
         return evalstring.eval(op).toInt()==0
     }
 }

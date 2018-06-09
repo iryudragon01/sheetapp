@@ -43,7 +43,6 @@ open class GoogleSheet:AsyncTask<String,String,String>() {
     }
 
     override fun onPostExecute(result: String?) {
-        println(result)
         getdatatime++
         val unwarp = (result as String).split("<||>")
         val headrev = unwarp[0].split("_")

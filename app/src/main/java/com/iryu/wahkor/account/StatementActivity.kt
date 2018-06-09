@@ -75,9 +75,7 @@ class StatementActivity : AppCompatActivity() {
         val editincome=  (position < IncomeData.split("<&&>").size)
         val realposition=if (editincome)position else position- IncomeData.split("<&&>").size
         val data=if (editincome)del_income.split(",") else del_expense.split(",")
-
-        println("realposition = $realposition \n position = $position \n incomedata=${IncomeData.split("<&&>").size}")
-            val edata=data.toTypedArray()
+         val edata=data.toTypedArray()
              val editval = if (edata[realposition]=="0") "1" else "0"
             val rdata=oldtext.split("_de")
             var tempdata=""
